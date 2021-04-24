@@ -89,7 +89,7 @@ final class BoltSession implements SessionInterface
     {
         $userAgent = sprintf('LaudisNeo4j-tsx%s/%s', $this->transactions->count(), ClientInterface::VERSION);
         try {
-            $sock = new StreamSocket($this->parsedUrl['host'], $this->parsedUrl['port'] ?? self::DEFAULT_TCP_PORT);
+            $sock = new StreamSocket($this->parsedUrl['host'], $this->parsedUrl['port'] ?? self::DEFAULT_TCP_PORT, 600);
             $bolt = new Bolt($sock);
             $bolt->init($userAgent, $this->parsedUrl['user'], $this->parsedUrl['pass']);
             $extra = ['db' => $this->injections->database()];
