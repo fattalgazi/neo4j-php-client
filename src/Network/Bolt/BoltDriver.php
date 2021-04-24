@@ -57,7 +57,7 @@ final class BoltDriver implements DriverInterface
         }
 
         try {
-            $sock = new StreamSocket($this->parsedUrl['host'], $this->parsedUrl['port'] ?? self::DEFAULT_TCP_PORT);
+            $sock = new StreamSocket($this->parsedUrl['host'], $this->parsedUrl['port'] ?? self::DEFAULT_TCP_PORT, 600);
             $options = $this->injections->sslContextOptions();
             if ($options) {
                 $sock->setSslContextOptions($options);
